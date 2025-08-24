@@ -69,6 +69,35 @@
         .border-primary {
             border-color: #000000 !important;
         }
+        
+        /* Custom header typography */
+        .header-intro {
+            font-weight: 300;
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .header-name {
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-name .first-name {
+            font-weight: 300;
+        }
+        
+        .header-name .last-name {
+            font-weight: 700;
+        }
+        
+        .typed-text-output {
+            font-weight: 400;
+            font-size: 1.25rem;
+            color: #ffffff;
+            opacity: 0.9;
+        }
       </style>
 
 </head>
@@ -124,9 +153,11 @@
                     <img class="img-fluid w-100 shadow-sm" src="img/saree-photo.jpeg" alt="">
                 </div>
                 <div class="col-lg-7 text-center text-lg-left">
-                    <h3 class="text-white font-weight-normal mb-3">I'm</h3>
-                    <h1 class="display-3 text-uppercase text-white mb-2" style="-webkit-text-stroke: 2px #000000;">Kavya Gouda</h1>
-                    <h1 class="typed-text-output d-inline font-weight-lighter text-white"></h1>
+                    <h3 class="header-intro text-white mb-3">I'm</h3>
+                    <h1 class="display-3 header-name text-white mb-3">
+                        <span class="first-name">Kavya</span> <span class="last-name">Gouda</span>
+                    </h1>
+                    <h2 class="typed-text-output d-inline"></h2>
                     <div class="typed-text d-none">DevOps Engineer, DevSecOps Engineer</div>
                     <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
                         <a href="Kavya_g_m.pdf" target="_blank" class="btn btn-outline-light mr-5">Download Resume</a>
