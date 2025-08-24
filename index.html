@@ -98,6 +98,89 @@
             color: #ffffff;
             opacity: 0.9;
         }
+
+        /* VSCode Theme for Project Cards */
+        .vscode-project-card {
+            background: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+            padding: 24px 20px 20px 20px;
+            margin-bottom: 32px;
+            color: #d4d4d4;
+            font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
+            border-left: 4px solid #007acc;
+            transition: box-shadow 0.2s, transform 0.2s;
+            position: relative;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+        }
+        .vscode-project-card:hover {
+            box-shadow: 0 8px 32px 0 rgba(0,122,204,0.25);
+            transform: translateY(-4px) scale(1.01);
+        }
+        .vscode-project-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            border: 1px solid #252526;
+            background: #252526;
+        }
+        .vscode-project-title {
+            color: #569cd6;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: inherit;
+        }
+        .vscode-project-description {
+            color: #d4d4d4;
+            font-size: 1rem;
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+        .vscode-project-links {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .vscode-project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: 6px;
+            background: #252526;
+            color: #9cdcfe;
+            border: 1px solid #007acc;
+            font-size: 0.95rem;
+            font-family: inherit;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .vscode-project-link:hover {
+            background: #007acc;
+            color: #fff;
+            text-decoration: none;
+        }
+        .vscode-project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .vscode-tech-badge {
+            background: #252526;
+            color: #b5cea8;
+            border-radius: 4px;
+            padding: 2px 10px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            border: 1px solid #333;
+        }
       </style>
 
 </head>
@@ -224,179 +307,105 @@
                 <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Projects</h1>
                 <h1 class="position-absolute text-uppercase text-primary">Projects</h1>
             </div>
-            
-            <div class="row portfolio-container">
-                <div class="row align-items-center">
-                <div class="col-lg-1 col-md-6 mb-4 portfolio-item first">
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-                    <a href="https://systemdesignguru.github.io/" target="_blank"><img class="img-fluid rounded w-100" style="height: 250px" src="img/projects/SystemDesignGuru.png" alt=""></a>
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="vscode-project-card">
+                        <img src="img/projects/SystemDesignGuru.png" alt="System Design Guru" class="vscode-project-image">
+                        <div class="vscode-project-title">System Design Guru</div>
+                        <div class="vscode-project-tech">
+                            <span class="vscode-tech-badge">HTML</span>
+                            <span class="vscode-tech-badge">CSS</span>
+                            <span class="vscode-tech-badge">JavaScript</span>
+                            <span class="vscode-tech-badge">System Design</span>
+                        </div>
+                        <div class="vscode-project-description">
+                            Developed website offering comprehensive resources for mastering system design interviews, featuring guides on networking protocols, HTTPS, NoSQL databases, and system architectures.
+                        </div>
+                        <div class="vscode-project-links">
+                            <a href="https://systemdesignguru.github.io/" target="_blank" class="vscode-project-link">
+                                <i class="fas fa-globe"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/systemdesignguru" target="_blank" class="vscode-project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-6 mb-4 portfolio-item first">
-                    <center><p style="font-size: 30px;"><a href="https://systemdesignguru.github.io/" target="_blank"><b>System Design Guru</b></a></p></center>
-                    <p>Developed website offering comprehensive resources for mastering <strong>system design interviews</strong>, featuring beginner-friendly guides on <strong>networking protocols</strong>, <strong>HTTPS communication</strong>, <strong>NoSQL databases</strong>, <strong>system architectures</strong>, high-level application designs, and practical examples to equip users with essential knowledge for excelling in their interviews.</p>
-                    <center>
-                        <u><a href="https://systemdesignguru.github.io/" target="_blank">
-                            <button style="background: #ff9800; border: 2px solid black;
-                                            background-color: white;
-                                            color: black;
-                                            padding: 10px 28px;
-                                            font-size: 16px;
-                                            border-radius: 20px;
-                                            cursor: pointer;">
-                                <img src="img/projects/browser.png" style="width: 16px; vertical-align: middle; margin-right: 8px;">Visit My Website
-                            </button>
-                        </a></u>
-                    </center>                    
-                </div>
-            </div>
-            <br>
-
-            <div class="row portfolio-container">
-                <div class="row align-items-center">
-                <div class="col-lg-1 col-md-6 mb-4 portfolio-item first">
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-                    <a href="https://github.com/chaitraboggaram/COT" target="_blank"><img class="img-fluid rounded w-100" style="height: 250px" src="img/projects/PlagiarismDetector.PNG" alt=""></a>
+                <!-- Project 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="vscode-project-card">
+                        <img src="img/projects/PlagiarismDetector.PNG" alt="Plagiarism Detector" class="vscode-project-image">
+                        <div class="vscode-project-title">Plagiarism Detector</div>
+                        <div class="vscode-project-tech">
+                            <span class="vscode-tech-badge">Python</span>
+                            <span class="vscode-tech-badge">Flask</span>
+                            <span class="vscode-tech-badge">Machine Learning</span>
+                            <span class="vscode-tech-badge">ChatGPT API</span>
+                        </div>
+                        <div class="vscode-project-description">
+                            Led team of 3 to create a Flask application for plagiarism detection, incorporating ML modules and ChatGPT API for 70% accuracy. Research paper accepted at CIST'23.
+                        </div>
+                        <div class="vscode-project-links">
+                            <a href="https://github.com/chaitraboggaram/COT" target="_blank" class="vscode-project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="Plagiarism Checker Paper.pdf" target="_blank" class="vscode-project-link">
+                                <i class="fas fa-file-pdf"></i> Research Paper
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-6 mb-4 portfolio-item first">
-                    <center><p style="font-size: 30px;"><a href="https://github.com/chaitraboggaram/COT" target="_blank"><b>Plagiarism Detector</b></a></p></center>
-                    <p>Led team of 3 to create a <b>Flask</b> application using <b>Python</b>, <b>HTML</b>, <b>CSS</b> for plagiarism detection, incorporating <b>Machine Learning</b> modules for accuracy, and invoked <b>ChatGPT API</b> completion for data comparison with 70% accuracy.</p><p>Research paper accepted at <b>8th International Conference on Computer and Information Science and Technology</b>.                        
-                    </p>
-                    <center><u><a href="Plagiarism Checker Paper.pdf" target="_blank">
-                        <button style="background: #ff9800; border: 2px solid black;
-                            background-color: white;
-                            color: black;
-                            padding: 10px 28px;
-                            font-size: 16px;
-                            border-radius: 20px;
-                            cursor: pointer;"><i class="fab fa-github"></i>&nbsp;&nbsp;View My Paper</button>
-                        </a></u>
-                    </center>
-                </div>
-            </div>
-            <br>
-            <div class="row portfolio-container">
-                <div class="row align-items-center">
-                <div class="col-lg-1 col-md-6 mb-4 portfolio-item first">
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-                    <a href="" target="_blank"><img class="img-fluid rounded w-100" style="height: 180px" src="img/projects/k8s.jpeg" alt=""></a>
+                <!-- Project 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="vscode-project-card">
+                        <img src="img/projects/k8s.jpeg" alt="Kubernetes Key-Value Store" class="vscode-project-image">
+                        <div class="vscode-project-title">Kubernetes Key-Value Store</div>
+                        <div class="vscode-project-tech">
+                            <span class="vscode-tech-badge">Kubernetes</span>
+                            <span class="vscode-tech-badge">Docker</span>
+                            <span class="vscode-tech-badge">FastAPI</span>
+                            <span class="vscode-tech-badge">Redis</span>
+                        </div>
+                        <div class="vscode-project-description">
+                            Built Key-Value store on Kubernetes with Docker containers, FastAPI web framework, and Redis queue with replication and autoscaling features.
+                        </div>
+                        <div class="vscode-project-links">
+                            <a href="https://github.com/chaitraboggaram/K8S-Key-Value-Store" target="_blank" class="vscode-project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=q0G2EKdzrYA" target="_blank" class="vscode-project-link">
+                                <i class="fab fa-youtube"></i> Demo
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-6 mb-4 portfolio-item first">
-                    <center><p style="font-size: 30px;"><a href="https://github.com/chaitraboggaram/K8S-Key-Value-Store" target="_blank"><b>Kubernetes Key-Value Store</b></a></p></center>
-                    <p>Built Key-Value store on <b>Kubernetes</b>, employing <b>Docker</b> Containers within Minikube pods, utilizing the <b>FastAPI</b> web framework for API development, and incorporating <b>Huey</b> as <b>REDIS</b> queue and storage solution with replication and autoscaling features.</p>
-                    <center><u><a href="https://www.youtube.com/watch?v=q0G2EKdzrYA" target="_blank">
-                        <button style="background: white; border: 2px solid black;
-                        color: black; padding: 10px 28px;
-                        font-size: 16px; border-radius: 20px;
-                        cursor: pointer;">
-                        <i class="fab fa-youtube" style="color: red;"></i>&nbsp;&nbsp;Watch The Demo
-                        </button>
-
-                        </a></u>
-                    </center>
-                </div>
-            </div>
-            <br>
-            <div class="row portfolio-container">
-                <div class="row align-items-center">
-                <div class="col-lg-1 col-md-6 mb-4 portfolio-item first">
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-                    <a href="https://github.com/chaitraboggaram/Crypto-Pub-Sub" target="_blank"><img class="img-fluid rounded w-100" style="height: 250px" src="img/projects/CryptoPubSub.jpeg" alt=""></a>
+                <!-- Project 4 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="vscode-project-card">
+                        <img src="img/projects/CryptoPubSub.jpeg" alt="Crypto News Notifier" class="vscode-project-image">
+                        <div class="vscode-project-title">Crypto News Notifier</div>
+                        <div class="vscode-project-tech">
+                            <span class="vscode-tech-badge">Python</span>
+                            <span class="vscode-tech-badge">Kafka</span>
+                            <span class="vscode-tech-badge">Pub-Sub</span>
+                            <span class="vscode-tech-badge">CoinCap API</span>
+                        </div>
+                        <div class="vscode-project-description">
+                            Real-time cryptocurrency news notifier with Pub-Sub architecture, custom broker with priority queue, and integration with CoinCap API for live updates.
+                        </div>
+                        <div class="vscode-project-links">
+                            <a href="https://github.com/chaitraboggaram/Crypto-Pub-Sub" target="_blank" class="vscode-project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=fTWX-pCrp3I" target="_blank" class="vscode-project-link">
+                                <i class="fab fa-youtube"></i> Demo
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-6 mb-4 portfolio-item first">
-                    <center><p style="font-size: 30px;"><a href="https://github.com/chaitraboggaram/Crypto-Pub-Sub" target="_blank"><b>Crypto News Notifier</b></a></p></center>
-                    <p>Created a real-time cryptocurrency news notifier in <b>Python</b> with a Pub-Sub architecture. Implemented custom broker with priority queue and evaluated it against <b>Kafka</b> for efficient message passing. Integrated <b>CoinCap API</b>, <b>SimpleJSONRPCServer</b> and <b>HTTPServer</b> for seamless real-time updates. Users can subscribe to Bitcoin, Ethereum and other cryptocurrency channels, receiving live notifications and interacting via a dynamic web interface.
-                    </p>
-                    <center><u><a href="https://www.youtube.com/watch?v=fTWX-pCrp3I" target="_blank">
-                        <button style="background: white; border: 2px solid black;
-                        color: black; padding: 10px 28px;
-                        font-size: 16px; border-radius: 20px;
-                        cursor: pointer;">
-                        <i class="fab fa-youtube" style="color: red;"></i>&nbsp;&nbsp;Watch The Demo
-                        </button>
-
-                        </a></u>
-                    </center>
-                </div>
+                <!-- Add more projects as needed, following the same structure -->
             </div>
-            <br>
-            <div class="row portfolio-container">
-                <div class="row align-items-center">
-                <div class="col-lg-1 col-md-6 mb-4 portfolio-item first">
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-                    <a href="" target="_blank"><img class="img-fluid rounded w-100" style="height: 250px" src="img/projects/BonVoyage.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-6 mb-4 portfolio-item first">
-                    <center><p style="font-size: 30px;"><a href="https://github.com/chaitraboggaram/flight-reservation-system" target="_blank"><b>Flight Reservation System</b></a></p></center>
-                    <p>Developed full-stack application using <b>Java Spring Boot</b> and <b>ReactJS</b>, integrated <b>Google OAuth</b> for authentication, utilized Workbench for <b>SQL</b> data management, and provided user-friendly interface for booking and managing flights.
-                    </p>
-                </div>
-            </div>
-            <br>
-            <div class="row portfolio-container">
-                <div class="row align-items-center">
-                <div class="col-lg-1 col-md-6 mb-4 portfolio-item first">
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-                    <a href="" target="_blank"><img class="img-fluid rounded w-100" style="height: 200px" src="img/projects/Blockchain.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-6 mb-4 portfolio-item first">
-                    <center><p style="font-size: 30px;"><a href="" target="_blank"><b>Network-based Blockchain</b></a></p></center>
-                    <p>Developed new infrastructure for <b>blockchain</b> application by multi-threading <b>Proof of Work</b> in <b>C programming</b> which utilized all cores of <b>SmartNIC</b> as well as leveraged its advantages of offloading and edge processing.
-                    </p>
-                </div>
-            </div>
-            <br>
-            <div class="row portfolio-container">
-                <div class="row align-items-center">
-                <div class="col-lg-1 col-md-6 mb-4 portfolio-item first">
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-                    <a href="https://github.com/chaitraboggaram/GiveForGood" target="_blank"><img class="img-fluid rounded w-100" style="height: 200px" src="img/projects/GiveForGood.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-6 mb-4 portfolio-item first">
-                    <center><p style="font-size: 30px;"><a href="https://github.com/chaitraboggaram/GiveForGood" target="_blank"><b>Give 4 Good</b></a></p></center>
-                    <p>Collaborated with a team of five to develop <b>"GiveForGood"</b>, a full-stack web application that connects individuals in need of food assistance with local donors and charities. Built a dynamic mapping feature using <b>ReactJS</b>, <b>HTML5</b>, <b>CSS</b>, and <b>Google Maps API</b>, implemented user authentication and location storage using <b>Python</b> with <b>Google Auth</b> and <b>MySQL</b>.
-                    </p>
-                </div>
-            </div>
-            <br>
-            <div class="row portfolio-container">
-                <div class="row align-items-center">
-                <div class="col-lg-1 col-md-6 mb-4 portfolio-item first">
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
-                    <a href="https://github.com/chaitraboggaram/ReferUp" target="_blank"><img class="img-fluid rounded w-100" style="height: 250px" src="img/projects/ReferUp.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-6 mb-4 portfolio-item first">
-                    <center><p style="font-size: 30px;"><a href="https://github.com/chaitraboggaram/ReferUp" target="_blank"><b>ReferUp</b></a></p></center>
-                    <p>Created a referral platform connecting SCU students and alumni, utilizing <b>React.js</b> and <b>Django</b> in <b>Python</b>, employed <b>OAuth 2.0</b> for secure authentication and hosted the project on <b>AWS EC2</b>, with <b>AWS RDS</b> for data management and <b>AWS SES</b> for automated email communication.
-                    </p>
-                </div>
-            </div>
-            <br>
-            <center><u><a href="https://github.com/chaitraboggaram" target="_blank">
-                <button style="background: #ff9800; border: 2px solid black;
-                    background-color: white;
-                    color: black;
-                    padding: 10px 28px;
-                    font-size: 16px;
-                    border-radius: 20px;
-                    cursor: pointer;"><i class="fab fa-github"></i>&nbsp;&nbsp;View My Projects</button>
-                </a></u>
-            </center>
         </div>
     </div>
     <!-- Project End -->
@@ -655,15 +664,6 @@
 </body>
 
 </html>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Activities & Interests End -->
-
-    <!-- Skill Start -->
-    <div class="container-fluid py-5" id="skill">
         <div class="container">
             <div class="position-relative d-flex align-items-center justify-content-center">
                 <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Skills</h1>
