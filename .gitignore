@@ -1,1 +1,39 @@
-.idea
+# macOS system files that should not be committed
+.DS_Store
+*/.DS_Store
+
+# Xcode
+xcuserdata/
+*.xcworkspace/
+*.xcodeproj/
+
+# Swift Package Manager
+Packages/
+DerivedData/
+.build/
+
+# CocoaPods
+Pods/
+*.xcuserstate
+
+# Carthage
+Carthage/
+
+# macOS file extensions to ignore
+*.swp          # Vim swap files
+*~             # Emacs backup files
+*.tmp          # Temporary files
+*.log          # Log files
+*.DS_Store     # Finder metadata files
+*.idea/        # IntelliJ IDEA project files
+*.iml          # IntelliJ IDEA module files
+
+# Compiled files
+*.o
+*.pyc
+*.pyo
+*.class
+
+# Executables
+*.exe
+*.out
