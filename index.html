@@ -368,21 +368,156 @@
                 <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Articles</h1>
                 <h1 class="position-absolute text-uppercase text-primary">Articles</h1>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="owl-carousel testimonial-carousel">
-                        <div class="text-center">
-                            <img class="rounded-circle mx-auto" src="img/achievements/CIST-2.png" style="width: 200px; height: 200px;">
-                            <h4 class="font-weight-light mb-3">Author</h4>
-                            <h5 class="font-weight-bold mb-2"><a href="https://cistseries.com/" target="_blank">CIST'23</a></h5><span>May 2023</span><br>
-                            <h5 class="font-weight-light mt-3 mb-4">Research paper titled "Plagiarism Checker Based on Machine Learning and OpenAI" accepted at the CIST'23 - 8th International Conference on Computer and Information Science and Technology</h5>
-                        </div>
-                    </div>
-                </div>
+            <div id="articles-list">
+                <!-- Articles will be rendered here by JS -->
             </div>
+            <nav aria-label="Articles pagination" class="d-flex justify-content-center mt-4">
+                <ul class="pagination" id="articles-pagination">
+                    <!-- Pagination will be rendered here by JS -->
+                </ul>
+            </nav>
         </div>
     </div>
     <!-- Articles End -->
+
+    <script>
+        // Example articles data (replace/add with your real articles)
+        const articles = [
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Research paper on ML-based plagiarism detection (CIST'23)",
+                link: "https://cistseries.com/"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "GitHub Composite Actions: A Practical Guide to Reusable Workflow Components",
+                link: "https://medium.com/@kavyagoudam/github-composite-actions-a-practical-guide-to-reusable-workflow-components-5fff31e82d07?sk=242b34c8cff6b3ca57c616fec9956212"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Migrating from Azure DevOps Pipelines to GitHub Actions: A Complete Guide",
+                link: "https://medium.com/@kavyagoudam/01-migrating-from-azure-devops-pipelines-to-github-actions-a-complete-guide-319cd137a904?sk=214430cb92bdff134e6e41d172b5f3cc"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Article 2: DevOps Automation Best Practices",
+                link: "https://example.com/article2"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Article 3: Kubernetes for Beginners",
+                link: "https://example.com/article3"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Article 4: CI/CD with GitHub Actions",
+                link: "https://example.com/article4"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Article 5: Monitoring with Prometheus",
+                link: "https://example.com/article5"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Article 6: Infrastructure as Code with Terraform",
+                link: "https://example.com/article6"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Article 7: Secure DevOps Pipelines",
+                link: "https://example.com/article7"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Article 8: Scaling Microservices",
+                link: "https://example.com/article8"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Article 9: SRE Fundamentals",
+                link: "https://example.com/article9"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Article 10: AIOps in Modern IT",
+                link: "https://example.com/article10"
+            },
+            {
+                img: "img/achievements/CIST-2.png",
+                desc: "Article 11: Advanced Docker Networking",
+                link: "https://example.com/article11"
+            },
+            // ...add more articles as needed...
+        ];
+
+        const articlesPerPage = 10;
+        let currentPage = 1;
+
+        function renderArticles(page) {
+            const start = (page - 1) * articlesPerPage;
+            const end = start + articlesPerPage;
+            const pageArticles = articles.slice(start, end);
+
+            let html = '<div class="list-group">';
+            pageArticles.forEach(article => {
+                html += `
+                    <div class="list-group-item d-flex align-items-center" style="background:#222;color:#eee;border:none;margin-bottom:8px;border-radius:8px;">
+                        <img src="${article.img}" alt="Article" style="width:48px;height:48px;object-fit:cover;border-radius:6px;margin-right:16px;">
+                        <div class="flex-grow-1">
+                            <a href="${article.link}" target="_blank" style="color:#4FC3F7;font-weight:500;text-decoration:none;">${article.desc}</a>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            document.getElementById('articles-list').innerHTML = html;
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(articles.length / articlesPerPage);
+            let html = '';
+
+            // Previous button
+            html += `<li class="page-item${currentPage === 1 ? ' disabled' : ''}">
+                <a class="page-link" href="#" aria-label="Previous" onclick="changeArticlePage(${currentPage - 1});return false;">&lt;</a>
+            </li>`;
+
+            // Page numbers (show max 5, with current in center if possible)
+            let start = Math.max(1, currentPage - 2);
+            let end = Math.min(totalPages, start + 4);
+            if (end - start < 4) start = Math.max(1, end - 4);
+
+            for (let i = start; i <= end; i++) {
+                html += `<li class="page-item${i === currentPage ? ' active' : ''}">
+                    <a class="page-link" href="#" onclick="changeArticlePage(${i});return false;">${i}</a>
+                </li>`;
+            }
+
+            // Next button
+            html += `<li class="page-item${currentPage === totalPages ? ' disabled' : ''}">
+                <a class="page-link" href="#" aria-label="Next" onclick="changeArticlePage(${currentPage + 1});return false;">&gt;</a>
+            </li>`;
+
+            document.getElementById('articles-pagination').innerHTML = html;
+        }
+
+        function changeArticlePage(page) {
+            const totalPages = Math.ceil(articles.length / articlesPerPage);
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderArticles(currentPage);
+            renderPagination();
+            // Scroll to articles section on page change
+            document.getElementById('Articles').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', function() {
+            renderArticles(currentPage);
+            renderPagination();
+        });
+    </script>
 
     <!-- Scroll to Bottom -->
     <i class="fa fa-2x fa-angle-down text-white scroll-to-bottom"></i>
