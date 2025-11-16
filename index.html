@@ -275,6 +275,93 @@
             font-family: inherit;
             border: 1px solid #333;
         }
+
+        /* Certificate Card Styles */
+        .certificate-card {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .certificate-card:hover {
+            border-color: #000;
+            background: #252526;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .certificate-header {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .certificate-icon {
+            font-size: 3rem;
+            color: #ff9800;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .certificate-title {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .certificate-issuer {
+            color: #ff9800;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .certificate-date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .certificate-link {
+            display: inline-block;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            margin-top: auto;
+        }
+
+        .certificate-link:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: scale(1.05);
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
       </style>
 
 </head>
@@ -293,6 +380,7 @@
                 <a href="#about" class="nav-item nav-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">About</a>
                 <a href="#projects" class="nav-item nav-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Projects</a>
                 <a href="#Articles" class="nav-item nav-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Articles</a>
+                <a href="#certificates" class="nav-item nav-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Certificates</a>
                 <a href="#contact" class="nav-item nav-link" style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Contact</a>
             </div>
             <a href="Kavya_g_m.pdf" target="_blank" class="btn btn-primary d-none d-lg-block px-4 py-2" style="border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Download Resume</a>
@@ -481,6 +569,55 @@
         </div>
     </div>
     <!-- Articles End -->
+
+    <!-- Certificates Start -->
+    <div class="container-fluid py-5" id="certificates">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Certificates</h1>
+                <h1 class="position-absolute text-uppercase text-primary">Certifications</h1>
+            </div>
+            <div class="row">
+                <!-- Certificate 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="certificate-card">
+                        <div class="certificate-header">
+                            <i class="fas fa-certificate certificate-icon"></i>
+                        </div>
+                        <h5 class="certificate-title">Kubernetes Certification</h5>
+                        <p class="certificate-issuer">Linux Foundation</p>
+                        <p class="certificate-date">Issued: 2024</p>
+                        <a href="#" class="certificate-link">View Certificate</a>
+                    </div>
+                </div>
+                <!-- Certificate 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="certificate-card">
+                        <div class="certificate-header">
+                            <i class="fas fa-certificate certificate-icon"></i>
+                        </div>
+                        <h5 class="certificate-title">Docker Certification</h5>
+                        <p class="certificate-issuer">Docker</p>
+                        <p class="certificate-date">Issued: 2024</p>
+                        <a href="#" class="certificate-link">View Certificate</a>
+                    </div>
+                </div>
+                <!-- Certificate 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="certificate-card">
+                        <div class="certificate-header">
+                            <i class="fas fa-certificate certificate-icon"></i>
+                        </div>
+                        <h5 class="certificate-title">AWS Solutions Architect</h5>
+                        <p class="certificate-issuer">Amazon Web Services</p>
+                        <p class="certificate-date">Issued: 2024</p>
+                        <a href="#" class="certificate-link">View Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Certificates End -->
 
     <script>
         // Example articles data (replace/add with your real articles)
