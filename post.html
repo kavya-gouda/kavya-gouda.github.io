@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Post</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: #121a33;
+        --text: #e8ecff;
+        --muted: #a9b2d6;
+        --link: #7aa2ff;
+        --border: rgba(255, 255, 255, 0.12);
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: radial-gradient(1000px 600px at 20% -10%, rgba(122, 162, 255, 0.35), transparent),
+          radial-gradient(800px 500px at 90% 0%, rgba(110, 231, 183, 0.22), transparent), var(--bg);
+        color: var(--text);
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 48px 18px;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 22px;
+      }
+      a {
+        color: var(--link);
+        text-decoration: none;
+        font-weight: 650;
+      }
+      h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        letter-spacing: 0.2px;
+      }
+      .meta {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      article {
+        background: rgba(18, 26, 51, 0.85);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px 18px;
+      }
+      /* Keep markdown readable */
+      article h2,
+      article h3 {
+        margin-top: 22px;
+      }
+      article pre {
+        overflow: auto;
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.25);
+      }
+      article code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        font-size: 0.95em;
+      }
+      article img {
+        max-width: 100%;
+        border-radius: 12px;
+      }
+      .content {
+        line-height: 1.65;
+        color: var(--text);
+      }
+    </style>
+
+    <!-- Markdown renderer (simple + no build step) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <a href="index.html">← Back to blog</a>
+        <div class="meta" id="meta"></div>
+      </div>
+
+      <h1 id="title">Loading…</h1>
+      <div class="meta" id="date"></div>
+
+      <article>
+        <div id="content" class="content">Loading markdown…</div>
+      </article>
+    </div>
+
+    <script>
+      function getSlugFromQuery() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("slug");
+      }
+
+      function safeText(s) {
+        return String(s ?? "");
+      }
+
+      async function loadPostsJson() {
+        const res = await fetch("posts.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to load posts.json");
+        return await res.json();
+      }
+
+      async function loadMarkdown(mdPath) {
+        const res = await fetch(mdPath, { cache: "no-store" });
+        if (!res.ok) throw new Error(`Failed to load post markdown: ${res.status}`);
+        return await res.text();
+      }
+
+      function extractTitle(md) {
+        // Simple heuristic: use first markdown heading as title if present.
+        // e.g. "# My Post"
+        const m = md.match(/^#\s+(.+)$/m);
+        return m?.[1]?.trim() || "";
+      }
+
+      async function main() {
+        const slug = getSlugFromQuery();
+        if (!slug) {
+          document.getElementById("title").textContent = "Missing slug";
+          document.getElementById("content").textContent = "Expected a URL like: post.html?slug=welcome";
+          return;
+        }
+
+        try {
+          const posts = await loadPostsJson();
+          const post = Array.isArray(posts) ? posts.find((p) => p && p.slug === slug) : undefined;
+
+          // Convention: posts/<slug>/post.md
+          // Fallbacks included for flexibility.
+          const mdPath =
+            post?.mdPath ||
+            `posts/${encodeURIComponent(slug)}/post.md` ||
+            `posts/${encodeURIComponent(slug)}/README.md` ||
+            `posts/${encodeURIComponent(slug)}.md`;
+
+          const md = await loadMarkdown(mdPath);
+          const title = post?.title || extractTitle(md) || slug;
+
+          document.getElementById("title").textContent = safeText(title);
+          document.getElementById("meta").textContent = post?.date ? `Published ${post.date}` : "";
+          document.getElementById("date").textContent = post?.date ? `Date: ${post.date}` : "";
+
+          const html = marked.parse(md, { gfm: true });
+          document.getElementById("content").innerHTML = html;
+        } catch (err) {
+          console.error(err);
+          document.getElementById("title").textContent = "Post not found";
+          document.getElementById("content").textContent =
+            "Could not load the markdown file. Make sure it exists at: posts/<slug>/post.md";
+        }
+      }
+
+      main();
+    </script>
+  </body>
+</html>
+
