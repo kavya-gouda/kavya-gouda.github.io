@@ -1,0 +1,12 @@
+# Dynamic Resource Allocation, devices, and drivers on Kubernetes
+
+Dynamic Resource Allocation (DRA) means smartly sharing computer power.
+It lets GPUs and special devices automatically give more power to tasks that need it most, like AI or video processing, and less power to tasks that don’t.
+
+## Using GPUs in Kubernetes
+Today, to use GPUs with Kubernetes, you need some special software from the GPU company. The main ones are GPU drivers and a Kubernetes device plugin. Installing GPU drivers makes sense because they let the system talk to the GPU. But you may wonder why we also need a separate device plugin—this plugin helps Kubernetes find, manage, and assign GPUs to applications properly.
+
+Kubernetes does not naturally understand special hardware like GPUs. The device plugin helps Kubernetes know that GPUs exist and makes them available to applications.
+
+The device plugin tells Kubernetes how many GPUs are on each node. It sends this information to the kubelet (the node manager). The kubelet then reports this to the API Server, so the scheduler knows which nodes have GPUs and can decide where to run GPU‑based applications.
+
