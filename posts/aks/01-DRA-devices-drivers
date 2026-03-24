@@ -10,6 +10,7 @@ Kubernetes does not naturally understand special hardware like GPUs. The device 
 
 The device plugin tells Kubernetes how many GPUs are on each node. It sends this information to the kubelet (the node manager). The kubelet then reports this to the API Server, so the scheduler knows which nodes have GPUs and can decide where to run GPU‑based applications.
 
+
 <figure style="margin: 1.5rem 0; max-width: 100%; overflow-x: auto;">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" width="720" height="320" role="img" aria-label="Device plugin, kubelet, API Server, and scheduler interactions">
     <defs>
