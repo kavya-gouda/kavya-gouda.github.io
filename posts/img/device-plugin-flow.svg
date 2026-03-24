@@ -21,6 +21,6 @@
   <line x1="392" y1="118" x2="520" y2="78" stroke="#7aa2ff" stroke-width="2" marker-end="url(#dp-arrow)" />
   <text x="430" y="88" text-anchor="middle" fill="#a9b2d6" font-size="10" font-family="ui-sans-serif, system-ui, sans-serif">advertise node with X devices</text>
   <line x1="520" y1="254" x2="392" y2="174" stroke="#7aa2ff" stroke-width="2" marker-end="url(#dp-arrow)" />
-  <text x="430" y="230" text-anchor="middle" fill="#a9b2d6" font-size="10" font-family="ui-sans-serif, system-ui, sans-serif">schedule pod requesting d X devices</text>
+  <text x="430" y="230" text-anchor="middle" fill="#a9b2d6" font-size="10" font-family="ui-sans-serif, system-ui, sans-serif">schedule pod requesting ≤ X devices</text>
   <line x1="584" y1="80" x2="584" y2="228" stroke="#7aa2ff" stroke-width="2" />
 </svg>
