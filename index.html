@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Teknologi - Posts</title>
+    <title>Kavya Gouda - Posts</title>
     <style>
       :root {
         --bg-0: #081122;
@@ -148,6 +148,68 @@
         margin-top: 18px;
       }
 
+      .about-section {
+        margin-top: 58px;
+        border-top: 1px solid var(--nav-border);
+        padding-top: 52px;
+      }
+
+      .about-title {
+        margin: 0 0 20px;
+        font-size: 52px;
+        line-height: 1.1;
+      }
+
+      .about-intro {
+        margin: 0 0 22px;
+        max-width: 980px;
+        color: var(--muted-strong);
+        font-size: 24px;
+        line-height: 1.55;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .about-card {
+        border: 1px solid var(--nav-border);
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 14px;
+        padding: 18px 16px;
+      }
+
+      .about-card h3 {
+        margin: 0 0 8px;
+        font-size: 22px;
+      }
+
+      .about-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      .about-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .about-links a {
+        color: var(--text);
+        text-decoration: none;
+        border: 1px solid var(--pill-border);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 15px;
+      }
+
       @media (max-width: 1100px) {
         .brand {
           font-size: 23px;
@@ -173,6 +235,15 @@
         }
         .tag {
           font-size: 16px;
+        }
+        .about-title {
+          font-size: 42px;
+        }
+        .about-intro {
+          font-size: 20px;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
         }
       }
 
@@ -213,16 +284,32 @@
           font-size: 14px;
           padding: 6px 10px 7px;
         }
+        .about-section {
+          margin-top: 40px;
+          padding-top: 34px;
+        }
+        .about-title {
+          font-size: 34px;
+        }
+        .about-intro {
+          font-size: 18px;
+        }
+        .about-card h3 {
+          font-size: 20px;
+        }
+        .about-card p {
+          font-size: 16px;
+        }
       }
     </style>
   </head>
   <body>
     <nav class="site-nav" aria-label="Main navigation">
       <div class="inner">
-        <a class="brand" href="index.html">Teknologi</a>
+        <a class="brand" href="index.html">Kavya Gouda</a>
         <div class="nav-links">
           <a class="active" href="index.html">Posts</a>
-          <a href="#">About</a>
+          <a href="#about">About</a>
           <a href="#">Resources</a>
           <a href="#">Tags</a>
         </div>
@@ -236,6 +323,53 @@
         <div id="posts" aria-live="polite"></div>
         <div id="empty" class="empty" style="display:none;">No posts yet.</div>
       </main>
+
+      <section id="about" class="about-section" aria-label="About Kavya Gouda">
+        <h2 class="about-title">About</h2>
+        <p class="about-intro">
+          I am Kavya Gouda, a DevOps and Cloud Engineer with 9+ years of hands-on experience turning
+          complex delivery pipelines into reliable, secure, and scalable platforms. I specialize in Azure
+          and AWS, Kubernetes-first operations, and platform automation that helps teams ship faster
+          without sacrificing stability.
+        </p>
+        <p class="about-intro">
+          My recent work includes scaling and operating dozens of Kubernetes clusters, migrating large
+          CI/CD estates to GitHub Actions, and embedding DevSecOps controls directly into engineering
+          workflows. I enjoy creating reusable platform patterns that reduce operational load and give
+          product teams a smoother path from commit to production.
+        </p>
+
+        <div class="about-grid">
+          <article class="about-card">
+            <h3>Platform Engineering</h3>
+            <p>
+              Kubernetes, Docker, Helm, Terraform, and GitOps practices to build dependable multi-env
+              cloud platforms.
+            </p>
+          </article>
+          <article class="about-card">
+            <h3>CI/CD & DevSecOps</h3>
+            <p>
+              GitHub Actions, Jenkins, Azure DevOps, and security gates (SAST/DAST/secret scanning) for
+              shift-left delivery.
+            </p>
+          </article>
+          <article class="about-card">
+            <h3>Observability & Reliability</h3>
+            <p>
+              Prometheus, Grafana, ELK, and production troubleshooting to improve uptime, incident
+              response, and release confidence.
+            </p>
+          </article>
+        </div>
+
+        <div class="about-links">
+          <a href="mailto:gmkavya211996@gmail.com">gmkavya211996@gmail.com</a>
+          <a href="https://www.linkedin.com/in/kavya-g-m" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+        </div>
+      </section>
     </div>
 
     <script>
