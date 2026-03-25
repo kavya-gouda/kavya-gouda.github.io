@@ -196,6 +196,27 @@
         gap: 8px;
       }
 
+      .tags-filter {
+        margin-top: 22px;
+      }
+
+      .tags-title {
+        margin: 0 0 6px;
+        font-size: 22px;
+        color: var(--muted-strong);
+      }
+
+      .tags-filter .tag {
+        cursor: pointer;
+        background: transparent;
+      }
+
+      .tags-filter .tag.active {
+        color: #dbe9ff;
+        border-color: rgba(66, 153, 255, 0.95);
+        background: rgba(45, 125, 231, 0.18);
+      }
+
       .tag {
         color: var(--pill);
         border: 1px solid var(--pill-border);
@@ -203,6 +224,7 @@
         font-size: 13px;
         line-height: 1;
         padding: 5px 10px 6px;
+        background: transparent;
       }
 
       .empty {
@@ -309,6 +331,10 @@
         .about-grid {
           grid-template-columns: 1fr;
         }
+
+        .tags-title {
+          font-size: 18px;
+        }
       }
 
       @media (max-width: 680px) {
@@ -364,6 +390,10 @@
         .about-card p {
           font-size: 16px;
         }
+
+        .tags-title {
+          font-size: 16px;
+        }
       }
     </style>
   </head>
@@ -375,7 +405,7 @@
           <a class="active" href="index.html">Posts</a>
           <a href="#about">About</a>
           <a href="#">Resources</a>
-          <a href="#">Tags</a>
+          <a href="#tags">Tags</a>
         </div>
       </div>
     </nav>
@@ -387,6 +417,12 @@
         <div id="posts" aria-live="polite"></div>
         <div id="empty" class="empty" style="display:none;">No posts yet.</div>
       </main>
+
+      <section id="tags" aria-label="Tags" style="margin-top: 10px;">
+        <h2 class="tags-title">Tags</h2>
+        <div id="tags-filter" class="tags-filter tags" aria-label="Tag filters"></div>
+        <div id="tags-empty" class="empty" style="display:none;">No tags yet.</div>
+      </section>
 
       <section id="about" class="about-section" aria-label="About Kavya Gouda">
         <h2 class="about-title">About</h2>
@@ -437,6 +473,9 @@
     </div>
 
     <script>
+      let allPosts = [];
+      let activeTag = null;
+
       async function loadPosts() {
         const res = await fetch("posts.json", { cache: "no-store" });
         if (!res.ok) throw new Error("Failed to load posts.json");
@@ -562,9 +601,63 @@
           });
       }
 
+      function renderTags(items) {
+        const tagsFilterEl = document.getElementById("tags-filter");
+        const tagsEmptyEl = document.getElementById("tags-empty");
+        tagsFilterEl.innerHTML = "";
+        tagsEmptyEl.style.display = "none";
+
+        const counts = new Map();
+        for (const p of items || []) {
+          if (!Array.isArray(p?.tags)) continue;
+          for (const t of p.tags) {
+            const key = String(t);
+            if (!key) continue;
+            counts.set(key, (counts.get(key) || 0) + 1);
+          }
+        }
+
+        if (counts.size === 0) {
+          tagsEmptyEl.style.display = "block";
+          return;
+        }
+
+        const entries = Array.from(counts.entries()).sort((a, b) =>
+          a[0].localeCompare(b[0])
+        );
+
+        // "All" tag
+        const allBtn = document.createElement("span");
+        allBtn.className = "tag" + (activeTag === null ? " active" : "");
+        allBtn.textContent = `All (${items.length})`;
+        allBtn.addEventListener("click", () => {
+          activeTag = null;
+          renderPosts(allPosts);
+          renderTags(allPosts);
+        });
+        tagsFilterEl.appendChild(allBtn);
+
+        entries.forEach(([tag, count]) => {
+          const el = document.createElement("span");
+          el.className = "tag" + (activeTag === tag ? " active" : "");
+          el.textContent = `${tag} (${count})`;
+          el.addEventListener("click", () => {
+            activeTag = tag;
+            const filtered = allPosts.filter((p) => Array.isArray(p?.tags) && p.tags.includes(tag));
+            renderPosts(filtered);
+            renderTags(allPosts);
+          });
+          tagsFilterEl.appendChild(el);
+        });
+      }
+
       loadPosts()
         .then(addDerivedFields)
-        .then(renderPosts)
+        .then((items) => {
+          allPosts = Array.isArray(items) ? items : [];
+          renderPosts(allPosts);
+          renderTags(allPosts);
+        })
         .catch((err) => {
           console.error(err);
           document.getElementById("empty").style.display = "block";
