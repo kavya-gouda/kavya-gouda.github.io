@@ -227,6 +227,67 @@
         background: transparent;
       }
 
+      .resources-section {
+        margin-top: 58px;
+        border-top: 1px solid var(--nav-border);
+        padding-top: 52px;
+      }
+
+      .resources-title {
+        margin: 0 0 18px;
+        font-size: 52px;
+        line-height: 1.1;
+        color: var(--text);
+      }
+
+      .resources-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .resource-item {
+        border: 1px solid var(--nav-border);
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 14px;
+        padding: 14px 16px;
+      }
+
+      .resource-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .resource-name {
+        margin: 0;
+        font-weight: 800;
+        font-size: 20px;
+        line-height: 1.2;
+      }
+
+      .resource-desc {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.45;
+      }
+
+      .resource-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border: 1px solid var(--pill-border);
+        color: var(--pill);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
       .empty {
         color: var(--muted);
         font-size: 24px;
@@ -335,6 +396,18 @@
         .tags-title {
           font-size: 18px;
         }
+
+        .resources-title {
+          font-size: 42px;
+        }
+
+        .resource-name {
+          font-size: 18px;
+        }
+
+        .resource-desc {
+          font-size: 14px;
+        }
       }
 
       @media (max-width: 680px) {
@@ -394,6 +467,27 @@
         .tags-title {
           font-size: 16px;
         }
+
+        .resources-title {
+          font-size: 34px;
+          margin-bottom: 14px;
+        }
+
+        .resource-item {
+          padding: 12px 14px;
+        }
+
+        .resource-name {
+          font-size: 16px;
+        }
+
+        .resource-desc {
+          font-size: 13px;
+        }
+
+        .resource-link {
+          padding: 7px 12px;
+        }
       }
     </style>
   </head>
@@ -404,7 +498,7 @@
         <div class="nav-links">
           <a class="active" href="index.html">Posts</a>
           <a href="#about">About</a>
-          <a href="#">Resources</a>
+          <a href="#resources">Resources</a>
           <a href="#tags">Tags</a>
         </div>
       </div>
@@ -422,6 +516,12 @@
         <h2 class="tags-title">Tags</h2>
         <div id="tags-filter" class="tags-filter tags" aria-label="Tag filters"></div>
         <div id="tags-empty" class="empty" style="display:none;">No tags yet.</div>
+      </section>
+
+      <section id="resources" aria-label="Resources" class="resources-section">
+        <h2 class="resources-title">Resources</h2>
+        <div id="resources-list" class="resources-list" aria-label="Resource downloads"></div>
+        <div id="resources-empty" class="empty" style="display:none;">No resources yet.</div>
       </section>
 
       <section id="about" class="about-section" aria-label="About Kavya Gouda">
@@ -475,6 +575,77 @@
     <script>
       let allPosts = [];
       let activeTag = null;
+
+      async function loadResources() {
+        const res = await fetch("resources.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to load resources.json");
+        return await res.json();
+      }
+
+      function renderResources(itemsOrPayload) {
+        const listEl = document.getElementById("resources-list");
+        const emptyEl = document.getElementById("resources-empty");
+        listEl.innerHTML = "";
+        emptyEl.style.display = "none";
+
+        const items = Array.isArray(itemsOrPayload)
+          ? itemsOrPayload
+          : Array.isArray(itemsOrPayload?.items)
+            ? itemsOrPayload.items
+            : [];
+
+        if (items.length === 0) {
+          emptyEl.style.display = "block";
+          return;
+        }
+
+        // Keep a stable, predictable order (title asc).
+        const sorted = items.slice().sort((a, b) =>
+          String(a?.title || "").localeCompare(String(b?.title || ""))
+        );
+
+        sorted.forEach((r) => {
+          const itemEl = document.createElement("div");
+          itemEl.className = "resource-item";
+
+          const top = document.createElement("div");
+          top.className = "resource-top";
+
+          const name = document.createElement("p");
+          name.className = "resource-name";
+          name.textContent = String(r?.title || r?.name || "Untitled");
+
+          const link = document.createElement("a");
+          link.className = "resource-link";
+
+          if (r?.path) {
+            link.href = String(r.path);
+            link.textContent = String(r?.linkLabel || "Download");
+          } else if (r?.url) {
+            link.href = String(r.url);
+            link.textContent = String(r?.linkLabel || "Open");
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+          } else {
+            link.href = "#";
+            link.textContent = "Link";
+          }
+
+          top.appendChild(name);
+          top.appendChild(link);
+          itemEl.appendChild(top);
+
+          const descText = r?.description ? String(r.description) : "";
+          if (descText) {
+            const desc = document.createElement("p");
+            desc.className = "resource-desc";
+            desc.textContent = descText;
+            itemEl.appendChild(desc);
+          }
+
+          listEl.appendChild(itemEl);
+        });
+      }
 
       async function loadPosts() {
         const res = await fetch("posts.json", { cache: "no-store" });
@@ -662,6 +833,15 @@
           console.error(err);
           document.getElementById("empty").style.display = "block";
           document.getElementById("empty").textContent = "Could not load posts.";
+        });
+
+      loadResources()
+        .then(renderResources)
+        .catch((err) => {
+          console.error(err);
+          const emptyEl = document.getElementById("resources-empty");
+          emptyEl.style.display = "block";
+          emptyEl.textContent = "Could not load resources.";
         });
     </script>
   </body>
