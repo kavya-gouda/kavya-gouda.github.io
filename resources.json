@@ -1,1 +1,13 @@
-[]
+[  {
+    "title": "Certificates Folder",
+    "description": "My certificates and documents hosted externally.",
+    "url": "https://github.com/your-username/certificates",
+    "linkLabel": "Open"
+  },
+{
+    "title": "Kubernetes Cheatsheet",
+    "description": "Handy notes PDF for day-to-day reference.",
+    "path": "resources/k8s-cheatsheet.pdf",
+    "linkLabel": "Download"
+  }
+]
