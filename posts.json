@@ -12,5 +12,12 @@
     "date": "2026-03-24",
     "mdPath": "posts/aks-dra-devices-drivers/post.md",
     "tags": ["Azure", "AKS", "Kubernetes"]
+  },
+  {
+    "slug" : "Access-and-identity-options-for-AKS",
+    "title": Access and identity options for AKS,
+    "date": "2026-03-25",
+    "mdPath": "posts/AKS/01-Access-and-identity.md",
+    "tags" : ["Azure", "AKS", "RBAC"]
   }
 ]
