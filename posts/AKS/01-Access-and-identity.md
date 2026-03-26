@@ -1,4 +1,4 @@
-# Access and identity options for AKS
+# authentication and authorization in AKS - Introduction Part 1
 
 Managing access to a Kubernetes cluster is an important part of keeping applications secure and reliable. To do this, Kubernetes and Azure Kubernetes Service (AKS) provide multiple ways to confirm who users are and control what actions they are allowed to perform
 
