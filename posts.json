@@ -19,5 +19,12 @@
     "date": "2026-03-25",
     "mdPath": "posts/AKS/01-Access-and-identity.md",
     "tags" : ["Azure", "AKS", "RBAC"]
+  },
+    {
+    "slug" : "best-Practices-for-authentication-and-authorization-in-AKS",
+    "title": "Best Practices for authentication and authorization in AKS Part 2S",
+    "date": "2026-03-25",
+    "mdPath": "posts/AKS/02-best-practices.md",
+    "tags" : ["Azure", "AKS", "RBAC"]
   }
 ]
