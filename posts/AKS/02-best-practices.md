@@ -1,4 +1,4 @@
-# Best Practices for authentication and authorization in AKS Part 2
+# authentication and authorization in AKS - Best Practices Part 2
 
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/07731e96-ec86-448b-8e7c-c6e87f983a14" />
 
