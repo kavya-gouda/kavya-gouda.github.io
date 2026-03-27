@@ -27,4 +27,11 @@
     "mdPath": "posts/AKS/02-best-practices.md",
     "tags" : ["Azure", "AKS", "RBAC"]
   }
+  {
+    "slug" : "Authentication-and-Authorization-in-AKS",
+    "title": "Enabling AKS‑Managed Microsoft Entra Integration for Kubernetes Clusters Using kubelogin",
+    "date": "2026-03-27",
+    "mdPath" : "posts/AKS/03-aks-managed-Microsoft-Entra-Integration-for-k8s-clusters-using-kubelogin.md"
+    "tags" : ["Azure", "AKS", "RBAC", "MicrosoftEntraId"]
+  }
 ]
