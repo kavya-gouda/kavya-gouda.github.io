@@ -152,42 +152,53 @@
       }
 
       .year-group {
-        margin-bottom: 28px;
+        margin-bottom: 32px;
       }
 
       .year {
-        margin: 0 0 18px;
+        margin: 0 0 14px;
         color: var(--muted-strong);
-        font-size: 28px;
+        font-size: 22px;
         font-weight: 700;
       }
 
+      .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 14px;
+      }
+
       .post-item {
-        margin-bottom: 18px;
         border: 1px solid var(--nav-border);
         background: rgba(255, 255, 255, 0.02);
         border-radius: 14px;
-        padding: 16px 18px;
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        transition: background 0.15s;
+      }
+
+      .post-item:hover {
+        background: rgba(255, 255, 255, 0.05);
       }
 
       .post-title {
         color: var(--text);
         text-decoration: none;
-        font-size: 28px;
-        line-height: 1.15;
-        font-weight: 750;
-        display: inline-block;
-        margin-bottom: 8px;
+        font-size: 16px;
+        line-height: 1.35;
+        font-weight: 700;
+        display: block;
       }
 
       .post-meta {
         color: var(--muted);
         margin: 0;
-        font-size: 16px;
+        font-size: 13px;
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
+        gap: 8px;
       }
 
       .dot {
@@ -375,14 +386,14 @@
           margin-bottom: 26px;
         }
         .year {
-          font-size: 22px;
-          margin-bottom: 14px;
+          font-size: 20px;
+          margin-bottom: 12px;
         }
         .post-title {
-          font-size: 22px;
+          font-size: 15px;
         }
         .post-meta {
-          font-size: 14px;
+          font-size: 12px;
         }
         .tag {
           font-size: 12px;
@@ -435,18 +446,20 @@
           margin-bottom: 20px;
         }
         .year {
-          font-size: 20px;
-          margin-bottom: 14px;
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+        .posts-grid {
+          grid-template-columns: 1fr;
         }
         .post-item {
-          margin-bottom: 14px;
-          padding: 14px 16px;
+          padding: 12px 14px;
         }
         .post-title {
-          font-size: 19px;
+          font-size: 15px;
         }
         .post-meta {
-          font-size: 13px;
+          font-size: 12px;
         }
         .tag {
           font-size: 11px;
@@ -740,6 +753,9 @@
             yearEl.textContent = year;
             yearGroup.appendChild(yearEl);
 
+            const grid = document.createElement("div");
+            grid.className = "posts-grid";
+
             groups[year].forEach((p) => {
               const item = document.createElement("article");
               item.className = "post-item";
@@ -770,8 +786,10 @@
                 item.appendChild(tags);
               }
 
-              yearGroup.appendChild(item);
+              grid.appendChild(item);
             });
+
+            yearGroup.appendChild(grid);
 
             postsEl.appendChild(yearGroup);
           });

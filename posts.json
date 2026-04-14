@@ -1,11 +1,12 @@
 [
   {
-    "slug": "welcome",
-    "title": "Welcome",
-    "date": "2026-03-23",
-    "mdPath": "posts/welcome/post.md",
+    "slug": "shell-scripting-for-Devops-Engineer",
+    "title": "shell scripting for Devops Engineer",
+    "date": "2026-04-14",
+    "mdPath": "posts/shell/concepts.md",
     "tags": ["General"]
   },
+
   {
     "slug": "aks-dra-devices-drivers",
     "title": "DRA Devices and Drivers in AKS",
