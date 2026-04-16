@@ -5,9 +5,9 @@
     "linkLabel": "Open"
   },
 {
-    "title": "Kubernetes Cheatsheet",
-    "description": "Handy notes PDF for day-to-day reference.",
-    "path": "resources/k8s-cheatsheet.pdf",
+    "title": "cilium up and running",
+    "description": "ebpf developement in cilium.",
+    "path": "resources/Cilium-Up&Running.pdf",
     "linkLabel": "Download"
   }
 ]
