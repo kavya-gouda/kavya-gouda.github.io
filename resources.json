@@ -1,8 +1,8 @@
 [  {
-    "title": "Certificates Folder",
+    "title": "AI agent momory",
     "description": "My certificates and documents hosted externally.",
-    "url": "https://github.com/your-username/certificates",
-    "linkLabel": "Open"
+    "url": "resources/kavya.prompt.md",
+    "linkLabel": "Download"
   },
 {
     "title": "cilium up and running",
