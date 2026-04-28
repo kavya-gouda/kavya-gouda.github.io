@@ -1,4 +1,11 @@
 [
+    {
+    "slug": "AWS-STS-AssumeRole",
+    "title": "AWS STS AssumeRole — Deep Dive",
+    "date": "2026-04-28",
+    "mdPath": "posts/AWS/sts-assume-role.md",
+    "tags": ["AWS", "IAM", "DevOps"]
+  },
   {
     "slug": "shell-scripting-for-Devops-Engineer",
     "title": "shell scripting for Devops Engineer",
