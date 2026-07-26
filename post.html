@@ -114,6 +114,10 @@
         return String(s ?? "");
       }
 
+      function isExternalUrl(path) {
+        return typeof path === "string" && /^https?:\/\//i.test(path);
+      }
+
       async function loadPostsJson() {
         const res = await fetch("posts.json", { cache: "no-store" });
         if (!res.ok) throw new Error("Failed to load posts.json");
@@ -144,6 +148,11 @@
         try {
           const posts = await loadPostsJson();
           const post = Array.isArray(posts) ? posts.find((p) => p && p.slug === slug) : undefined;
+
+          if (post && isExternalUrl(post.mdPath)) {
+            window.location.href = post.mdPath;
+            return;
+          }
 
           // Convention: posts/<slug>/post.md
           // Fallbacks included for flexibility.

@@ -699,19 +699,27 @@
         return Math.max(1, Math.ceil(words / 200));
       }
 
+      function isExternalUrl(path) {
+        return typeof path === "string" && /^https?:\/\//i.test(path);
+      }
+
       async function addDerivedFields(items) {
         const enriched = [];
         for (const post of items) {
           const p = { ...post };
           if (!p.readingTimeMinutes) {
-            try {
-              const mdPath = p.mdPath || `posts/${encodeURIComponent(p.slug)}/post.md`;
-              const md = await fetch(mdPath, { cache: "no-store" }).then((r) =>
-                r.ok ? r.text() : Promise.resolve("")
-              );
-              p.readingTimeMinutes = readingTimeFromMarkdown(md);
-            } catch {
+            if (isExternalUrl(p.mdPath)) {
               p.readingTimeMinutes = 1;
+            } else {
+              try {
+                const mdPath = p.mdPath || `posts/${encodeURIComponent(p.slug)}/post.md`;
+                const md = await fetch(mdPath, { cache: "no-store" }).then((r) =>
+                  r.ok ? r.text() : Promise.resolve("")
+                );
+                p.readingTimeMinutes = readingTimeFromMarkdown(md);
+              } catch {
+                p.readingTimeMinutes = 1;
+              }
             }
           }
           enriched.push(p);
@@ -762,7 +770,14 @@
 
               const title = document.createElement("a");
               title.className = "post-title";
-              title.href = `post.html?slug=${encodeURIComponent(p.slug)}`;
+              const href = isExternalUrl(p.mdPath)
+                ? p.mdPath
+                : `post.html?slug=${encodeURIComponent(p.slug)}`;
+              title.href = href;
+              if (isExternalUrl(p.mdPath)) {
+                title.target = "_blank";
+                title.rel = "noopener noreferrer";
+              }
               title.textContent = p.title || p.slug;
 
               const meta = document.createElement("p");
