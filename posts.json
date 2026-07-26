@@ -1,5 +1,12 @@
 [
     {
+    "slug": "IAC-module Management-for-Platform-Engineers",
+    "title": "IAC module Management for Platform Engineers",
+    "date": "2026-07-26",
+    "mdPath": "posts/AWS/sts-assume-role.md",
+    "tags": ["PlatformEngineer", "IAC", "DevOps"]
+    },
+    {
     "slug": "AWS-STS-AssumeRole",
     "title": "AWS STS AssumeRole — Deep Dive",
     "date": "2026-04-28",
@@ -10,7 +17,7 @@
     "slug": "shell-scripting-for-Devops-Engineer",
     "title": "shell scripting for Devops Engineer",
     "date": "2026-04-14",
-    "mdPath": "posts/shell/concepts.md",
+    "mdPath": "https://www.linkedin.com/pulse/iac-module-management-platform-engineers-kavya-g-m-9d4ic",
     "tags": ["General", "Shell", "Programming"]
   },
 
